@@ -39,12 +39,12 @@ def load_pipeline(accelerator, weight_dtype, args):
         subfolder="transformer",
         torch_dtype=weight_dtype,
     )
-    if args.enable_sequential_cpu_offload:
-        pipeline.enable_sequential_cpu_offload()
-    elif args.enable_model_cpu_offload:
-        pipeline.enable_model_cpu_offload()
-    else:
-        pipeline = pipeline.to(accelerator.device)
+    # if args.enable_sequential_cpu_offload:
+    #     pipeline.enable_sequential_cpu_offload()
+    # elif args.enable_model_cpu_offload:
+    #     pipeline.enable_model_cpu_offload()
+    # else:
+    pipeline = pipeline.to(accelerator.device)
     return pipeline
 
 def run(
