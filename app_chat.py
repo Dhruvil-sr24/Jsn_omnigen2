@@ -1094,10 +1094,12 @@ def main(args):
         global accelerator
         global pipeline
 
-        bf16 = True
-        accelerator = Accelerator(mixed_precision="bf16" if bf16 else "no")
-        weight_dtype = torch.bfloat16 if bf16 else torch.float32
-
+        # bf16 = True
+        # accelerator = Accelerator(mixed_precision="bf16" if bf16 else "no")
+        # weight_dtype = torch.bfloat16 if bf16 else torch.float32
+        use_fp16 = True  # instead of bf16
+        accelerator = Accelerator(mixed_precision="fp16")
+        weight_dtype = torch.float16
         pipeline = load_pipeline(accelerator, weight_dtype, args)
 
         # click
